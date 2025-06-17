@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My 3D Flower</title>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background: 
+                radial-gradient(ellipse 500px 300px at 25% 40%, rgba(255, 20, 147, 0.15) 0%, transparent 70%),
+                radial-gradient(ellipse 600px 400px at 75% 30%, rgba(138, 43, 226, 0.2) 0%, transparent 80%),
+                radial-gradient(ellipse 400px 250px at 50% 60%, rgba(72, 61, 139, 0.25) 0%, transparent 75%),
+                radial-gradient(ellipse 300px 200px at 80% 70%, rgba(219, 112, 147, 0.12) 0%, transparent 65%),
+                radial-gradient(ellipse 450px 300px at 20% 70%, rgba(75, 0, 130, 0.18) 0%, transparent 70%),
+                radial-gradient(ellipse 350px 220px at 60% 20%, rgba(147, 0, 211, 0.14) 0%, transparent 60%),
+                radial-gradient(ellipse 200px 120px at 90% 40%, rgba(255, 105, 180, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse 250px 150px at 10% 80%, rgba(106, 90, 205, 0.16) 0%, transparent 65%),
+                linear-gradient(135deg, rgba(25, 25, 112, 0.1) 0%, rgba(0, 0, 0, 0.9) 50%, rgba(72, 61, 139, 0.08) 100%),
+                #000;
+            color: white;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sparkle {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: sparkle 3s infinite;
+            pointer-events: none;
+        }
+        
+        .comet {
+            position: absolute;
+            background: radial-gradient(circle, #fff 0%, #ffeb3b 30%, #ff9800 60%, transparent 100%);
+            border-radius: 50%;
+            animation: cometFly 3s linear;
+            pointer-events: none;
+            opacity: 0.9;
+            box-shadow: 
+                0 0 10px rgba(255, 235, 59, 0.8),
+                0 0 20px rgba(255, 152, 0, 0.6),
+                0 0 30px rgba(255, 87, 34, 0.4);
+        }
+        
+        .comet::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: 100%;
+            width: 60px;
+            height: 8px;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0.9) 0%, 
+                rgba(255,235,59,0.8) 20%, 
+                rgba(255,152,0,0.7) 40%, 
+                rgba(255,87,34,0.5) 60%, 
+                rgba(183,28,28,0.3) 80%, 
+                transparent 100%);
+            transform: translateY(-50%);
+            border-radius: 4px;
+            box-shadow: 
+                0 0 8px rgba(255, 152, 0, 0.6),
+                0 0 16px rgba(255, 87, 34, 0.4);
+        }
+        
+        .astronaut-container {
+            position: absolute;
+            animation: astronautFloat 20s linear infinite;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .astronaut-model {
+            width: 60px;
+            height: 60px;
+            background-color: transparent;
+        }
+        
+        .random-model-container {
+            position: absolute;
+            animation: randomModelFloat 25s linear infinite;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+        
+        .random-model {
+            width: 50px;
+            height: 50px;
+            background-color: transparent;
+        }
+        
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes cometFly {
+            0% {
+                transform: translateX(-100px) translateY(-50px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.8;
+            }
+            90% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes astronautFloat {
+            0% {
+                transform: translateX(-80px) translateY(0px) rotate(0deg);
+                opacity: 0;
+            }
+            5% {
+                opacity: 0.7;
+            }
+            95% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateX(calc(100vw + 80px)) translateY(-30px) rotate(15deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes randomModelFloat {
+            0% {
+                transform: translateX(-70px) translateY(20px) rotate(0deg) scale(0.8);
+                opacity: 0;
+            }
+            8% {
+                opacity: 0.6;
+            }
+            92% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateX(calc(100vw + 70px)) translateY(-40px) rotate(25deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        #model-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 500px;
+        }
+        
+        model-viewer {
+            width: 400px;
+            height: 400px;
+            background-color: transparent;
+            transition: transform 0.1s ease;
+        }
+        
+        .spin-button {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .spin-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: linear-gradient(45deg, #ff5252, #d32f2f);
+        }
+        
+        .crazy-spin {
+            animation: crazySpin 0.1s linear infinite !important;
+        }
+        
+        .duplicate-flower {
+            position: absolute;
+            animation: duplicateFloat 1s linear infinite;
+            z-index: 5;
+        }
+        
+        .white-flash {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: white;
+            z-index: 9999;
+            opacity: 0;
+        }
+        
+        .white-flash.active {
+            animation: whiteFlash 1s ease-in;
+        }
+        
+        @keyframes crazySpin {
+            0% { transform: rotateY(0deg) rotateX(0deg) rotateZ(0deg); }
+            25% { transform: rotateY(90deg) rotateX(90deg) rotateZ(90deg); }
+            50% { transform: rotateY(180deg) rotateX(180deg) rotateZ(180deg); }
+            75% { transform: rotateY(270deg) rotateX(270deg) rotateZ(270deg); }
+            100% { transform: rotateY(360deg) rotateX(360deg) rotateZ(360deg); }
+        }
+        
+        @keyframes duplicateFloat {
+            0% { 
+                transform: scale(0.5) translateX(0px) translateY(0px) rotate(0deg);
+                opacity: 0.8;
+            }
+            50% {
+                transform: scale(1) translateX(100px) translateY(-50px) rotate(180deg);
+                opacity: 0.6;
+            }
+            100% { 
+                transform: scale(0.3) translateX(200px) translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes whiteFlash {
+            0% { opacity: 0; }
+            90% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>spin the flower</h1>
+        
+        <!-- Music control button -->
+        <button id="musicToggle" onclick="toggleMusic()" style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 18px;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        ">🎵</button>
+        
+        <!-- Hidden YouTube video for background music -->
+        <iframe 
+            id="youtubeMusic"
+            style="display: none;" 
+            width="0" 
+            height="0"
+            src=""
+            title="Background Music"
+            frameborder="0"
+            allow="autoplay; encrypted-media">
+        </iframe>
+        
+        <div id="model-container">
+            <model-viewer
+                src="crystal-flower.glb"
+                camera-controls
+                auto-rotate
+                background-color="transparent"
+            ></model-viewer>
+        </div>
+    </div>
+
+    <script>
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            
+            const size = Math.random() * 4 + 2;
+            sparkle.style.width = size + 'px';
+            sparkle.style.height = size + 'px';
+            
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            
+            sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 5000);
+        }
+        
+        function createComet() {
+            const comet = document.createElement('div');
+            comet.className = 'comet';
+            
+            const size = Math.random() * 3 + 3;
+            comet.style.width = size + 'px';
+            comet.style.height = size + 'px';
+            
+            comet.style.top = Math.random() * window.innerHeight + 'px';
+            comet.style.left = '-100px';
+            
+            document.body.appendChild(comet);
+            
+            setTimeout(() => {
+                comet.remove();
+            }, 3000);
+        }
+        
+        function createAstronaut() {
+            const astronautContainer = document.createElement('div');
+            astronautContainer.className = 'astronaut-container';
+            
+            const astronautModel = document.createElement('model-viewer');
+            astronautModel.className = 'astronaut-model';
+            astronautModel.src = 'https://modelviewer.dev/shared-assets/models/Astronaut.glb';
+            astronautModel.setAttribute('auto-rotate', '');
+            astronautModel.setAttribute('background-color', 'transparent');
+            astronautModel.setAttribute('disable-zoom', '');
+            astronautModel.setAttribute('disable-pan', '');
+            
+            astronautContainer.appendChild(astronautModel);
+            
+            const avoidCenter = Math.random() < 0.5 ? 
+                Math.random() * (window.innerHeight * 0.3) : 
+                Math.random() * (window.innerHeight * 0.3) + (window.innerHeight * 0.7);
+            
+            astronautContainer.style.top = avoidCenter + 'px';
+            astronautContainer.style.left = '-80px';
+            
+            document.body.appendChild(astronautContainer);
+            
+            setTimeout(() => {
+                astronautContainer.remove();
+            }, 20000);
+        }
+        
+        function createRandomModel() {
+            const modelContainer = document.createElement('div');
+            modelContainer.className = 'random-model-container';
+            
+            const randomModel = document.createElement('model-viewer');
+            randomModel.className = 'random-model';
+            
+            // Array of random 3D models
+            const models = [
+                'https://modelviewer.dev/shared-assets/models/Horse.glb',
+                'https://modelviewer.dev/shared-assets/models/Astronaut.glb',
+                'https://modelviewer.dev/shared-assets/models/RobotExpressive.glb',
+                'https://modelviewer.dev/shared-assets/models/Duck.glb'
+            ];
+            
+            // Pick random model
+            const randomModelSrc = models[Math.floor(Math.random() * models.length)];
+            randomModel.src = randomModelSrc;
+            randomModel.setAttribute('auto-rotate', '');
+            randomModel.setAttribute('background-color', 'transparent');
+            randomModel.setAttribute('disable-zoom', '');
+            randomModel.setAttribute('disable-pan', '');
+            
+            modelContainer.appendChild(randomModel);
+            
+            // Random starting height (avoid center)
+            const avoidCenter = Math.random() < 0.5 ? 
+                Math.random() * (window.innerHeight * 0.25) : 
+                Math.random() * (window.innerHeight * 0.25) + (window.innerHeight * 0.75);
+            
+            modelContainer.style.top = avoidCenter + 'px';
+            modelContainer.style.left = '-70px';
+            
+            document.body.appendChild(modelContainer);
+            
+            setTimeout(() => {
+                modelContainer.remove();
+            }, 25000);
+        }
+        
+        setInterval(createSparkle, 200);
+        setInterval(createComet, 5000);
+        setInterval(createAstronaut, 25000);
+        setInterval(createRandomModel, 15000);
+        
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createSparkle, i * 100);
+        }
+        
+        // YouTube music control function
+        let isPlaying = false;
+        const youtubeFrame = document.getElementById('youtubeMusic');
+        const musicButton = document.getElementById('musicToggle');
+        
+        // YouTube video URL with your chosen music
+        const youtubeURL = "https://www.youtube.com/embed/oBN-MnM3HKE?autoplay=1&loop=1&playlist=oBN-MnM3HKE&mute=0";
+        
+        // Set initial button state
+        musicButton.textContent = '🎵';
+        musicButton.style.opacity = '0.6';
+        
+        function toggleMusic() {
+            if (isPlaying) {
+                // Stop music by removing the source
+                youtubeFrame.src = "";
+                musicButton.textContent = '🎵';
+                musicButton.style.opacity = '0.6';
+                isPlaying = false;
+            } else {
+                // Start music by setting the source
+                youtubeFrame.src = youtubeURL;
+                musicButton.textContent = '🔊';
+                musicButton.style.opacity = '1';
+                isPlaying = true;
+            }
+        }
+        
+        // Optional: Auto-start music after user interacts with page
+        document.addEventListener('click', function() {
+            if (!isPlaying) {
+                // Uncomment the next line if you want music to start on first click
+                // toggleMusic();
+            }
+        }, { once: true });
+    </script>
+</body>
+</html>

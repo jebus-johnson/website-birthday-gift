@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Enhanced Magical Garden Creator 🌸</title>
+    <link rel="stylesheet" href="css/fourth-style.css">
+</head>
+<body>
+    <div class="content">
+        <!-- Music control button -->
+        <button id="musicToggle">🔊</button>
+        <iframe
+            id="youtubeMusic"
+            style="display: none;"
+            width="0"
+            height="0"
+            src=""
+            title="Background Music"
+            frameborder="0"
+            allow="autoplay; encrypted-media">
+        </iframe>
+        
+        <!-- Header -->
+        <div class="header-section">
+            <h1>🌸 The Enhanced Magical Gardens 🌸</h1>
+            <p>Welcome to the ultimate garden adventure, Aimen!</p>
+            <p>Grow flowers, harvest fruits, and protect your garden from pests!</p>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="garden-container">
+            <div class="garden-content">
+                <h2>🌺 Your Living Garden Ecosystem 🌺</h2>
+                <p>Experience a dynamic garden where plants grow over time, fruits can be harvested, and you must protect your garden from hungry insects!</p>
+                
+                <div class="garden-features">
+                    <div class="feature-card">
+                        <div class="feature-icon">🍎</div>
+                        <h3>Fruit Trees</h3>
+                        <p>Plant special fruit trees that grow and produce harvestable fruits over time</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🐛</div>
+                        <h3>Garden Pests</h3>
+                        <p>Watch out for hungry insects that might eat your flowers and fruits!</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🐞</div>
+                        <h3>Beneficial Insects</h3>
+                        <p>Attract ladybugs and bees to protect your garden and boost growth</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3>Garden Economy</h3>
+                        <p>Harvest fruits to earn coins and buy upgrades for your garden</p>
+                    </div>
+                </div>
+                
+                <!-- Garden Game Section -->
+                <div class="garden-game-section">
+                    <h3>🌻 Create Your Living Garden 🌻</h3>
+                    <p>Plant flowers and fruit trees, defend against pests, and harvest your rewards!</p>
+                    
+                    <!-- Garden Stats -->
+                    <div class="garden-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">🌸</span>
+                            <span class="stat-label">Plants:</span>
+                            <span id="plantCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🍎</span>
+                            <span class="stat-label">Fruits:</span>
+                            <span id="fruitCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">💰</span>
+                            <span class="stat-label">Coins:</span>
+                            <span id="coinCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🐛</span>
+                            <span class="stat-label">Pests:</span>
+                            <span id="pestCount">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">✨</span>
+                            <span class="stat-label">Magic:</span>
+                            <span id="magicLevel">0%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🎯</span>
+                            <span class="stat-label">Level:</span>
+                            <span id="gardenLevel">Seedling</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🏆</span>
+                            <span class="stat-label">Achievements:</span>
+                            <span id="achievementCount">0</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Garden Tools -->
+                    <div class="garden-tools">
+                        <h4>🛠️ Garden Tools:</h4>
+                        <div class="tool-buttons">
+                            <button class="tool-btn active" data-tool="plant" title="Plant flowers (Q)">🌱 Plant</button>
+                            <button class="tool-btn" data-tool="water" title="Water plants for growth (W)">💧 Water</button>
+                            <button class="tool-btn" data-tool="harvest" title="Harvest fruits (E)">🥕 Harvest</button>
+                            <button class="tool-btn" data-tool="pesticide" title="Remove pests (R)">🧪 Pesticide</button>
+                            <button class="tool-btn" data-tool="fertilizer" title="Boost growth (T)">💊 Fertilizer</button>
+                            <button class="tool-btn" data-tool="remove" title="Remove plants (Y)">✂️ Remove</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Weather & Effects -->
+                    <div class="garden-weather">
+                        <h4>🌤️ Garden Weather:</h4>
+                        <div class="weather-buttons">
+                            <button class="weather-btn active" data-weather="sunny">☀️ Sunny</button>
+                            <button class="weather-btn" data-weather="rainy">🌧️ Rainy</button>
+                            <button class="weather-btn" data-weather="rainbow">🌈 Rainbow</button>
+                            <button class="weather-btn" data-weather="storm">⛈️ Storm</button>
+                        </div>
+                    </div>
+                    
+                    <div class="plant-selector">
+                        <h4>Choose Your Plant (1-8):</h4>
+                        <div class="plant-buttons">
+                            <!-- Flowers -->
+                            <button class="plant-btn active" data-plant="rose" data-type="flower" data-rarity="common">🌹 Rose<br><span>Beauty</span></button>
+                            <button class="plant-btn" data-plant="sunflower" data-type="flower" data-rarity="common">🌻 Sunflower<br><span>Joy</span></button>
+                            <button class="plant-btn" data-plant="tulip" data-type="flower" data-rarity="common">🌷 Tulip<br><span>Dreams</span></button>
+                            <button class="plant-btn" data-plant="lotus" data-type="flower" data-rarity="rare">🪷 Lotus<br><span>Wisdom</span></button>
+                            
+                            <!-- Fruit Trees -->
+                            <button class="plant-btn" data-plant="apple" data-type="fruit" data-rarity="common">🌳 Apple Tree<br><span>🍎 Fruit</span></button>
+                            <button class="plant-btn" data-plant="cherry" data-type="fruit" data-rarity="uncommon">🌸 Cherry Tree<br><span>🍒 Fruit</span></button>
+                            <button class="plant-btn" data-plant="orange" data-type="fruit" data-rarity="uncommon">🍊 Orange Tree<br><span>🍊 Fruit</span></button>
+                            <button class="plant-btn magical-plant" data-plant="rainbow" data-type="fruit" data-rarity="legendary">🌈 Rainbow Tree<br><span>🏆 Magic</span></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Beneficial Insects Shop -->
+                    <div class="insect-shop">
+                        <h4>🐞 Beneficial Insects Shop:</h4>
+                        <div class="shop-buttons">
+                            <button class="shop-btn" data-insect="ladybug" data-cost="10">🐞 Ladybug<br><span>10 coins - Pest Control</span></button>
+                            <button class="shop-btn" data-insect="bee" data-cost="15">🐝 Bee<br><span>15 coins - Pollination</span></button>
+                            <button class="shop-btn" data-insect="butterfly" data-cost="20">🦋 Butterfly<br><span>20 coins - Magic Boost</span></button>
+                            <button class="shop-btn" data-insect="dragonfly" data-cost="25">🦗 Dragonfly<br><span>25 coins - Super Protection</span></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Garden Upgrades -->
+                    <div class="upgrades-shop">
+                        <h4>⬆️ Garden Upgrades:</h4>
+                        <div class="upgrade-buttons">
+                            <button class="upgrade-btn" data-upgrade="sprinkler" data-cost="50">💦 Auto Sprinkler<br><span>50 coins</span></button>
+                            <button class="upgrade-btn" data-upgrade="scarecrow" data-cost="75">🤖 Scarecrow<br><span>75 coins</span></button>
+                            <button class="upgrade-btn" data-upgrade="greenhouse" data-cost="100">🏠 Greenhouse<br><span>100 coins</span></button>
+                            <button class="upgrade-btn" data-upgrade="fertilizer_station" data-cost="150">🧪 Fertilizer Station<br><span>150 coins</span></button>
+                        </div>
+                    </div>
+                    
+                    <!-- Garden Achievements -->
+                    <div class="achievements-panel">
+                        <h4>🏆 Garden Achievements:</h4>
+                        <div class="achievements-grid" id="achievementsGrid">
+                            <!-- Achievements will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="garden-plot" id="gardenPlot">
+                        <div class="garden-instructions">Click anywhere to plant! 🌸</div>
+                        <div class="weather-overlay" id="weatherOverlay"></div>
+                        <canvas id="effectsCanvas" class="effects-canvas"></canvas>
+                        
+                        <!-- Garden Upgrades Display -->
+                        <div id="upgradeDisplay" class="upgrade-display"></div>
+                    </div>
+                    
+                    <div class="garden-controls">
+                        <button id="autoGarden" class="control-btn" title="Auto Garden (A)">🤖 Auto Garden</button>
+                        <button id="clearGarden" class="control-btn" title="Clear Garden (C)">🗑️ Clear Garden</button>
+                        <button id="saveGarden" class="control-btn magical-glow" title="Save Garden (S)">💖 Finish Garden</button>
+                        <button id="harvestAll" class="control-btn" title="Harvest All Fruits">🍎 Harvest All</button>
+                        <button id="pestControl" class="control-btn" title="Pest Control Mode">🐛 Pest Control</button>
+                        <button id="exportGarden" class="control-btn" title="Export as Image">🖼️ Export Image</button>
+                    </div>
+                    
+                    <!-- Garden Analytics Panel -->
+                    <div class="analytics-panel">
+                        <h4>📊 Garden Analytics:</h4>
+                        <div class="analytics-grid" id="analyticsGrid">
+                            <div class="analytics-item">
+                                <span class="analytics-label">Garden Age:</span>
+                                <span id="gardenAge">New</span>
+                            </div>
+                            <div class="analytics-item">
+                                <span class="analytics-label">Rare Plants:</span>
+                                <span id="rarePlantCount">0</span>
+                            </div>
+                            <div class="analytics-item">
+                                <span class="analytics-label">Total Harvest:</span>
+                                <span id="totalHarvest">0</span>
+                            </div>
+                            <div class="analytics-item">
+                                <span class="analytics-label">Pest Battles:</span>
+                                <span id="pestBattles">0</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Garden Seasons -->
+                    <div class="season-selector">
+                        <h4>🍃 Garden Season:</h4>
+                        <div class="season-buttons">
+                            <button class="season-btn active" data-season="spring">🌸 Spring</button>
+                            <button class="season-btn" data-season="summer">☀️ Summer</button>
+                            <button class="season-btn" data-season="autumn">🍂 Autumn</button>
+                            <button class="season-btn" data-season="winter">❄️ Winter</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="garden-actions">
+                    <button id="messageButton" class="garden-btn magical-glow" title="Special Message (M)">💌 Special Message</button>
+                    <button id="backButton" class="garden-btn" title="Return to Portal (B)">← Return to Portal</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Achievement Notification (Hidden initially) -->
+        <div id="achievementNotification" class="achievement-notification hidden">
+            <div class="notification-content">
+                <span class="notification-icon">🏆</span>
+                <span class="notification-text">Achievement Unlocked!</span>
+            </div>
+        </div>
+        
+        <!-- Pest Alert Notification -->
+        <div id="pestAlert" class="pest-alert hidden">
+            <div class="alert-content">
+                <span class="alert-icon">🐛</span>
+                <span class="alert-text">Pest Attack!</span>
+            </div>
+        </div>
+        
+        <!-- Harvest Notification -->
+        <div id="harvestNotification" class="harvest-notification hidden">
+            <div class="harvest-content">
+                <span class="harvest-icon">🍎</span>
+                <span class="harvest-text">Fruit Ready!</span>
+            </div>
+        </div>
+        
+        <!-- Garden Completion Message (Hidden initially) -->
+        <div id="gardenComplete" class="garden-complete hidden">
+            <div class="completion-content">
+                <h2>🌸 Amazing Garden Created! 🌸</h2>
+                <div class="garden-summary">
+                    <p>Plants Grown: <span id="totalPlantsCount">0</span></p>
+                    <p>Fruits Harvested: <span id="totalFruitsHarvested">0</span></p>
+                    <p>Coins Earned: <span id="totalCoinsEarned">0</span></p>
+                    <p>Pests Defeated: <span id="totalPestsDefeated">0</span></p>
+                    <p>Magic Level: <span id="finalMagicLevel">0</span></p>
+                    <p>Achievements: <span id="finalAchievements">0</span></p>
+                </div>
+                <p>Your garden is a thriving ecosystem of beauty and abundance! ✨</p>
+                <button id="closeCompletionButton">Continue Journey</button>
+            </div>
+        </div>
+
+        <!-- Message Box (Hidden initially) -->
+        <div id="messageBox" class="message-overlay hidden">
+            <div class="message-content">
+                <h2>💖 A Special Message 💖</h2>
+                <div class="message-text">
+                    <p>Dear Aimen,</p>
+                    <p>You've created not just a garden, but a living ecosystem! Your patience in growing fruits, wisdom in fighting pests, and creativity in building your garden shows your amazing spirit.</p>
+                    <p>Like a real gardener, you've learned that the most beautiful things take time to grow, and sometimes we must protect what we love.</p>
+                    <p>✨ Keep nurturing your dreams like you nurtured this garden! ✨</p>
+                </div>
+                <button id="closeMessageButton">Close Message</button>
+            </div>
+        </div>
+        
+        <!-- Tooltip (Hidden initially) -->
+        <div id="tooltip" class="tooltip hidden"></div>
+    </div>
+    
+    <script src="js/fourth-main.js"></script>
+</body>
+</html>

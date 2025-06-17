@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Sweet Lemon Princess - Pixel Art Studio</title>
+  <link rel="stylesheet" href="css/next-style.css">
+</head>
+<body>
+  <div class="content">
+    <!-- Music control button -->
+    <button id="musicToggle">🔊</button>
+    <iframe
+      id="youtubeMusic"
+      style="display: none;"
+      width="0"
+      height="0"
+      src=""
+      title="Background Music"
+      frameborder="0"
+      allow="autoplay; encrypted-media">
+    </iframe>
+    
+    <!-- Header -->
+    <div class="header-section">
+      <h1>🎨 Your Magical Pixel Art Studio 🎨</h1>
+      <p>Create beautiful pixel art, sweet lemon princess</p>
+    </div>
+    
+    <!-- Pixel Art Editor Container -->
+    <div class="pixel-container">
+      <div class="grid"></div>
+      <div class="palette">
+        <!-- Color Picker Section -->
+        <div class="color-picker-section">
+          <label for="colorPicker">🎨 Custom Color:</label>
+          <input type="color" id="colorPicker" value="#ff69b4" class="color-picker-input">
+        </div>
+        
+        <!-- Original colors -->
+        <div class="color" data-color="tan"></div>
+        <div class="color" data-color="green"></div>
+        <div class="color" data-color="white"></div>
+        <div class="color" data-color="black"></div>
+        
+        <!-- Theme colors -->
+        <div class="color" data-color="#ff69b4"></div>
+        <div class="color" data-color="#8a2be2"></div>
+        <div class="color" data-color="#da70d6"></div>
+        <div class="color" data-color="#9370db"></div>
+        
+        <!-- New vibrant colors -->
+        <div class="color" data-color="blue"></div>
+        <div class="color" data-color="yellow"></div>
+        <div class="color" data-color="orange"></div>
+        <div class="color" data-color="#000080"></div>
+        
+        <!-- More new colors -->
+        <div class="color" data-color="#40E0D0"></div>
+        <div class="color" data-color="#0ABAB5"></div>
+        <div class="color" data-color="#32CD32"></div>
+        <div class="color" data-color="#F5F5DC"></div>
+        
+        <!-- Additional colors -->
+        <div class="color" data-color="#800000"></div>
+        <div class="color" data-color="#FF1493"></div>
+        <div class="color" data-color="#FF4500"></div>
+        <div class="color" data-color="#00CED1"></div>
+        
+        <!-- Eraser (special button) -->
+        <div class="color eraser" data-color="transparent">🧽</div>
+      </div>
+      
+      <!-- Controls -->
+      <div class="controls">
+        <button id="clearButton">✨ Clear Canvas</button>
+        <button id="exportButton">📸 Export PNG</button>
+        <button id="proceedButton">🚀 Proceed</button>
+        <button id="backButton">← Return to Experience</button>
+      </div>
+    </div>
+    
+    <!-- Quiz Prompt (Hidden by default) -->
+    <div id="quizPrompt" class="favorite-color-prompt hidden">
+      <div class="prompt-content">
+        <h2>💫 Challenge Time 💫</h2>
+        <p>What is your favourite colour, Aimen?</p>
+        
+        <!-- Hint Section -->
+        <div class="hint-section">
+          <button id="hintButton" class="hint-button">💡 Hint: Click to open hint</button>
+          <div id="hintContent" class="hint-content hidden">
+            <p>"I am the one who knocks"</p>
+          </div>
+        </div>
+        
+        <input type="text" id="quizInput" placeholder="Type your answer here..." maxlength="20">
+        <div class="prompt-buttons">
+          <button id="submitAnswerButton">✨ Submit</button>
+          <button id="cancelQuizButton">Cancel</button>
+        </div>
+        <div id="quizResponse" class="color-response hidden">
+          <p id="responseMessage"></p>
+          <button id="nextRoundButton" class="next-round-button hidden">🎯 Proceed to Next Round</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/next-main.js"></script>
+</body>
+</html>

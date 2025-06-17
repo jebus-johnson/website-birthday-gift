@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>My 3D Flower</title>
+  <!-- model-viewer component -->
+  <script
+    type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+  </script>
+  <!-- your stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="content">
+    <!-- Music control button -->
+    <button id="musicToggle">🎵</button>
+    <iframe
+      id="youtubeMusic"
+      style="display: none;"
+      width="0"
+      height="0"
+      src=""
+      title="Background Music"
+      frameborder="0"
+      allow="autoplay; encrypted-media">
+    </iframe>
+    <!-- Terminal overlay -->
+    <div class="terminal">
+      <div class="terminal-row">❀🎂💐 welcome to the experience</div>
+      <div class="terminal-row">❀🎂💐 sweet lemon </div>
+      <button class="terminal-button">چلو شروع کرتے ہیں</button>
+    </div>
+    <!-- 3D model container -->
+    <div id="model-container">
+      <model-viewer
+        camera-controls
+        auto-rotate
+        background-color="transparent">
+      </model-viewer>
+    </div>
+  </div>
+  <!-- your script -->
+  <script src="js/main.js"></script>
+</body>
+</html>

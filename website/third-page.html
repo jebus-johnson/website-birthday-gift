@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweet Lemon Princess - Level 2 Challenge</title>
+  <link rel="stylesheet" href="css/third-style.css">
+</head>
+<body>
+  <div class="content">
+    <!-- Music control button -->
+    <button id="musicToggle">🔊</button>
+    <iframe
+      id="youtubeMusic"
+      style="display: none;"
+      width="0"
+      height="0"
+      src=""
+      title="Background Music"
+      frameborder="0"
+      allow="autoplay; encrypted-media">
+    </iframe>
+    
+    <!-- Header -->
+    <div class="header-section">
+      <h1>🎯 Level 2 Challenge 🎯</h1>
+      <p>Congratulations! You've reached the next level, Aimen!</p>
+    </div>
+    
+    <!-- Challenge Container -->
+    <div class="challenge-container">
+      <div class="challenge-content">
+        <h2>🌟 Ultimate Challenge 🌟</h2>
+        <p>Welcome to Level 2! You've proven yourself worthy!</p>
+        <p>What awaits you in this mysterious realm?</p>
+        
+        <div class="challenge-options">
+          <button id="secretButton" class="challenge-btn secret-glow">✨ Secret Portal</button>
+          <button id="backToPixelButton" class="challenge-btn">🎨 Return to Pixel Art</button>
+        </div>
+        
+        <div class="achievement-section">
+          <h3>🏆 Your Achievement 🏆</h3>
+          <div class="achievement-badge">
+            <span class="badge-icon">👑</span>
+            <div class="badge-text">
+              <h4>Color Master</h4>
+              <p>Successfully completed Level 1 Challenge</p>
+              <p>Unlocked Secret Portal</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mystery Box with Video (Hidden initially) -->
+    <div id="mysteryBox" class="mystery-box hidden">
+      <div class="mystery-content">
+        <h2>🎁 Secret Portal Unlocked! 🎁</h2>
+        <p>You discovered the hidden magical realm!</p>
+        
+        <!-- Video Player -->
+        <div class="video-container">
+          <video id="secretVideo" controls poster="" class="secret-video" aria-label="Secret video content">
+            <source src="videos/video1.mp4" type="video/mp4">
+            <p>Your browser doesn't support video playback. <a href="videos/video1.mp4">Download the video</a> instead.</p>
+          </video>
+        </div>
+        
+        <div class="mystery-message">
+          <p>"The princess who seeks knowledge shall find endless treasures..."</p>
+        </div>
+        <div class="mystery-buttons">
+          <button id="continueJourneyButton">🌟 Continue Journey</button>
+          <button id="closeMysteryButton">Close Portal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="js/third-main.js"></script>
+</body>
+</html>
